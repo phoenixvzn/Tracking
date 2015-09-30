@@ -3,8 +3,8 @@ script: ant package
 deploy:
    edge: true
    provider: cloudfoundry
-   username: phoenixvzn
-   password: Ksundar88
+   username: vignesh.nagarajan@verizon.com
+   password: sivakasi
    api: https://api.run.pivotal.io
-   organization: phoenixvzn
+   organization: phoneixvzn
    space: development
