@@ -1,0 +1,4 @@
+---
+applications:
+- name: Tracker
+  path: build/Tracker.war
