@@ -58,8 +58,8 @@ public class LoginController {
 			String vNo = String.valueOf((int) Math.round(Math.random() * 9999));
 			User user = (User)httpSession.getAttribute("User");
 			user.setOnePass(vNo);
-			sendMail(vNo);
 			sendMailUsingGmail(vNo);
+			sendMail(vNo);
 			model.setViewName("verification");
 		}else{
 			model.setViewName("login");
