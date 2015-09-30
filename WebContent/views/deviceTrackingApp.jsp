@@ -14,7 +14,7 @@ String userName = user.getUsername();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Tracker</title>
+<title>Tracker--</title>
 </head>
 <script type="text/javascript" src="../client/extjs/build/ext-all.js">
 
