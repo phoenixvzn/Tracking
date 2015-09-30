@@ -160,7 +160,7 @@ public class LoginController {
 	      String from = "nvignesh86@gmail.com";
 
 	      // Assuming you are sending email from localhost
-	      String host = "localhost";
+	      String host = "127.0.0.1";
 
 	      // Get system properties
 	      Properties properties = System.getProperties();
