@@ -152,41 +152,48 @@ public class LoginController {
 	         mex.printStackTrace();
 	      }
 	}
-	public void sendMailUsingGmail(String vNo) {  
-		 
-		String to="nvignesh86@gmail.com";//change accordingly  
-		 
-		  //Get the session object  
-		  Properties props = new Properties();  
-		  props.put("mail.smtp.host", "smtp.gmail.com");  
-		  props.put("mail.smtp.socketFactory.port", "465");  
-		  props.put("mail.smtp.socketFactory.class",  
-		            "javax.net.ssl.SSLSocketFactory");  
-		  props.put("mail.smtp.auth", "true");  
-		  props.put("mail.smtp.port", "465");  
-		   
-		  Session session = Session.getDefaultInstance(props,  
-		   new javax.mail.Authenticator() {  
-		   protected PasswordAuthentication getPasswordAuthentication() {  
-		   return new PasswordAuthentication("nvignesh86@gmail.com","Vicky987");//change accordingly  
-		   }  
-		  });  
-		   
-		  //compose message  
-		  try {  
-		   MimeMessage message = new MimeMessage(session);  
-		   message.setFrom(new InternetAddress("nvignesh86@gmail.com"));//change accordingly  
-		   message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
-		   message.setSubject("One-Time Password");  
-		   message.setText("your one-time password is "+vNo);  
-		     
-		   //send message  
-		   Transport.send(message);  
-		  
-		   System.out.println("message sent successfully");  
-		   
-		  } catch (MessagingException e) {throw new RuntimeException(e);}  
-		   
-		 }  
+	public void sendMailUsingGmail(String vNo) {
+		// Recipient's email ID needs to be mentioned.
+	      String to = "nvignesh86@gmail.com";
+
+	      // Sender's email ID needs to be mentioned
+	      String from = "nvignesh86@gmail.com";
+
+	      // Assuming you are sending email from localhost
+	      String host = "localhost";
+
+	      // Get system properties
+	      Properties properties = System.getProperties();
+
+	      // Setup mail server
+	      properties.setProperty("mail.smtp.host", host);
+
+	      // Get the default Session object.
+	      Session session = Session.getDefaultInstance(properties);
+
+	      try{
+	         // Create a default MimeMessage object.
+	         MimeMessage message = new MimeMessage(session);
+
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
+
+	         // Set To: header field of the header.
+	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+	         // Set Subject: header field
+	         message.setSubject("One-Time Password");
+
+	         // Now set the actual message
+	         message.setText("your one-time password is "+vNo);
+
+	         // Send message
+	         Transport.send(message);
+	         System.out.println("Sent message successfully....");
+	      }catch (MessagingException mex) {
+	         mex.printStackTrace();
+	      }
+
+	}  
 
 }
