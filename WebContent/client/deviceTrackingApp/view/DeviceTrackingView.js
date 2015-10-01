@@ -110,7 +110,7 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 							margin : '5 0 5 5',
 							itemId : 'History',
 							width : 100
-						 },
+						 }/*,
 						 {
 							xtype : 'button',
 							text : 'From Previous',
@@ -119,7 +119,7 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 							width : 120
 							
 						
-						 }
+						 }*/
 				 ]
 			 },
 			 {
@@ -137,7 +137,7 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 				 height : "100%",
 	        	 layout : 'fit',
 	        	 style : 'border : 1px solid black',
-	        	 items :{   xtype: 'gmappanel',
+	        	 items :{/*   xtype: 'gmappanel',
       				        gmapType: 'map',
 							itemId : 'dtMap',
       				        center: {
@@ -155,7 +155,40 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 									mapCtrl = mapObj;
 								}
 							}
-	        	          }
+	        	          */
+	        		 xtype: 'gmappanel',
+				        gmapType: 'map',
+						itemId : 'dtMap',
+				        center: {
+				            geoCodeAddr: "Newyork"
+				            /* marker: {
+				                title: 'Newyork',
+								animation : google.maps.Animation.BOUNCE
+				            } */
+				        },
+				        mapOptions : {
+				            mapTypeId: google.maps.MapTypeId.ROADMAP
+				        },
+						listeners : {
+							mapready : function(ux,mapObj){
+								mapCtrl = mapObj;
+								var x = 40.7127;
+								var y = -74.0059;
+								var myCenter = new google.maps.LatLng(x,y);
+								var marker = new google.maps.Marker({
+									position: myCenter,
+									animation : google.maps.Animation.BOUNCE,
+									title:'Click to zoom'
+								});
+								//}
+								
+								marker.setMap(mapCtrl);
+								mapCtrl.setCenter(marker.getPosition());
+								ux.up('[itemId=deviceTrackingParentContainer]').marker = marker;
+								
+							}
+						}
+	        	 }
 	        	 
 	         },
 	         {
@@ -175,20 +208,20 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 						{
 							xtype : 'panel',
 							margin : '5 5 5 5',
-							html:"<div style='width:120px;padding-top:5px;height:30px;background-color:#66dd66;color:white;font-weight:bold;text-align:center'>Devices</div>",
+							html:"<div style='width:120px;padding-top:5px;height:30px;background-color:#00CDFF;color:white;font-weight:bold;text-align:center'>Devices</div>",
 							frame:false,
 							border:false,
 						 },
 						 {
 							xtype : 'button',
-							text : 'Car',
+							text : 'My Car',
 							margin : '5 5 5 5',
 							itemId : 'device1',
 							width : 120
 						 },
 						 {
 							xtype : 'button',
-							text : 'Bike',
+							text : 'My Bike',
 							margin : '5 5 5 5',
 							itemId : 'device2',
 							width : 120
@@ -197,14 +230,14 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 						 },
 						 {
 							xtype : 'button',
-							text : 'Son',
+							text : 'My Cab',
 							margin : '5 5 5 5',
 							itemId : 'device3',
 							width : 120
 							
 						 },{
 							xtype : 'button',
-							text : 'Daughter',
+							text : 'Transport',
 							margin : '5 5 5 5',
 							itemId : 'device4',
 							width : 120
@@ -215,6 +248,9 @@ Ext.define("DeviceTrackingApp.view.DeviceTrackingView",{
 							text : 'Technician',
 							margin : '5 5 5 5',
 							itemId : 'device5',
+							style : {
+								background : 'green'
+							},
 							width : 120
 						
 						 }
